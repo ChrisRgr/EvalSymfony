@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Category manager{% endblock %}
+
+{% block body %}
+<div class="container">
+
+    <a href="{{ path('app_userAdd')}}">
+        <p class="btn btn-outline-success my-2 my-sm-0">
+            Add USER </p>
+    </a>
+
+    <table class="table">
+        <tr>
+            <th>Mail</th>
+            <th>Role</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+        {% for user in userList %}
+        <tr>
+            <td>{{user.email}}</td>
+            <td>{{user.roles[0]}}</td>
+            <td><a href="{{path('app_userEdit',{id:user.id})}}">Edit</a></td>
+            <td><a href="{{path('app_userDelete',{id:user.id})}}">Delete User</a></td>
+        </tr>
+
+        <br>
+
+        {% endfor %}
+    </table>
+
+
+</div>
+{% endblock %}

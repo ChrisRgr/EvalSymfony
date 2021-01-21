@@ -3,11 +3,26 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-
-        {% block javascripts %}{% endblock %}
+        {% block stylesheets %}
+        {{   encore_entry_link_tags('app') }}
+        {% endblock %}
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     </head>
     <body>
+        <header>
+            {% include 'navbar.html.twig' %}
+        </header>
+        {# voir le addFlash #}
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success message">
+                {{ message | raw }}
+            </div>
+        {% endfor %}
+
         {% block body %}{% endblock %}
+        {% block javascripts %}
+        {% endblock %}
     </body>
 </html>
